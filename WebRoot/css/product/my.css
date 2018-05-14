@@ -1,0 +1,230 @@
+body{
+	font-size:14px;
+	margin: 0 auto;
+    min-width: 320px;
+    max-width: 640px;
+	background:#fff;
+}
+.mui-bar {margin: 0 auto;
+    min-width: 320px;
+    max-width: 640px;}
+.my-header{
+	height: 100px;
+	padding: 35px 15px 0px;
+	background: #387e38;
+	color: white;
+}
+
+.my-header .i-img{
+	float: left;
+}
+
+.my-header .i-img, .my-header img{
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	box-shadow: 0px 0px 3px;
+}
+
+.my-header .my-name{
+	float: left;
+	padding: 3px 10px;
+}
+
+.my-header .my-name span{
+	font-size: 16px;
+}
+
+.my-header .utype{
+	line-height: 20px;
+	width: 70px;
+	border-radius: 10px 0px 0px 10px;
+	background: #333;
+	opacity: 0.7;
+	float: right;
+	margin-right: -15px;
+	margin-top: 15px;
+	text-align: center;
+}
+
+.my-order, .my-action{
+	overflow: auto;
+	border-top: 1px solid #ccc;
+}
+
+.my-order .i-item-link{
+	background: white;
+}
+
+.i-item-link .text{
+	padding-right: 10px;
+	color:#f00;
+}
+
+.my-order label, .my-action .i-item-link label{
+	font-size: 16px;
+	font-weight: 600;
+	color:#666;
+}
+
+.my-order .status{
+	background: white;
+	overflow: auto;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #BBBBBB;
+}
+
+.my-order .status ul{
+	overflow: auto;
+	padding:0px;
+}
+
+.my-order .status li{
+	position: relative;
+	display: block;
+	width: 25%;
+	text-align: center;
+	float: left;
+	padding: 0px 6px;
+	font-size: 10px;
+	border-right: 1px solid #ddd;
+}
+
+.my-order .status li .mui-icon {
+    font-size: 25px;
+}
+
+.my-order .status li .num-tag {
+    right: 17px;
+    top: 6px;
+}
+
+.my-order .status li span, .my-action li span{
+	display: block;
+}
+
+.my-order .status li .s-money{
+	color:#333;
+	font-size:14px;
+}
+
+.my-action{
+	margin-top: 10px;
+}
+
+.my-action li{
+	position: relative;
+	display: block;
+	width: 25%;
+	height: 100px;
+	text-align: center;
+	float: left;
+	padding: 20px 6px 0px;
+	font-size: 10px;
+	border: 1px solid #ddd;
+}
+
+.my-action li .mui-icon {
+    font-size: 40px;
+}
+
+.my-action li.active{
+	color: red;
+}
+
+.my-order .status li .mui-badge span{
+	display:none;
+}
+
+.addr-list{
+	background:#fff;
+}
+
+.addr-item{
+	padding:8px 15px;
+	border-bottom:1px solid #ccc;
+	border-top: 1px solid #ccc;
+	color:#666;
+}
+
+.addr-item h5{
+	font-size:14px;
+	line-height:24px;
+}
+
+.addr-item .btn-group-min{
+	text-align:right;
+	padding:5px 15px;
+}
+
+.addr-item p{
+	padding-left:6px;
+}
+
+.addr-item .btn{
+	padding:2px 6px;
+	margin-left:6px;
+}
+
+input, select, textarea{
+	font-size: 14px;
+}
+
+.qr-info{
+	margin:30px 0px 0px;
+	width:100%;
+	text-align:center;
+}
+
+.qr-info .header-img{
+	width:60px;
+	height:60px;
+	border-radius:50%;
+}
+
+.qr-info .qr-img{
+	width:50%;
+	border:2px solid #ccc;
+	margin-top:10px;
+}
+
+.qr-info h4{
+	font-size:18px;
+	color:#333;
+	text-align:center;
+	line-height:18px;
+	margin: 12px;
+}
+
+.qr-info h4 span{
+	color:#F30;
+}
+
+.qr-body{
+	background-color:#F9F8F8;
+	margin:0px;
+	padding:0px;
+}
+
+.qr-body .footer{
+	position:fixed;
+	bottom:0px;
+}
+
+.qr-body .footer img{
+	opacity:0.8;
+	width:100%;
+}
+.upgrad{
+	margin:20px;
+	color:#666;
+	font-size:15px;
+	text-align:left;
+	line-height:27px;
+}
+
+
+.mui-btn{
+	padding:9px;
+	
+}

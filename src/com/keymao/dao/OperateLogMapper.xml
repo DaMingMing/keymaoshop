@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.keymao.dao.OperateLogMapper" >
+	<resultMap id="BaseResultMap" type="com.keymao.domain.OperateLog" >  
+	  <id column="LOGID" property="logId" jdbcType="INTEGER" />  
+	  <result column="LOGMODULETYPE" property="logModuleType" jdbcType="INTEGER" />  
+	  <result column="LOGTYPE" property="logType" jdbcType="INTEGER" />  
+	  <result column="LOGDETAIL" property="logDetail" jdbcType="VARCHAR" />  
+	  <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />  
+	  <result column="CREATETM" property="createTm" jdbcType="TIMESTAMP"  javaType="java.sql.Timestamp"  />  
+	  <result column="UPDATETM" property="updateTm" jdbcType="TIMESTAMP"  javaType="java.sql.Timestamp"  /> 
+	</resultMap> 
+	
+  <select id="selectByExample" resultType="com.keymao.domain.OperateLog" parameterType="com.keymao.domain.OperateLog" >
+	select * from OPERATELOG 
+	<where>  
+	    <if test="account != null and account != ''">
+	    	and account = #{account}
+	    </if>
+	    
+	  	    <if test="logDetail != null and logDetail != ''">
+	    	and logDetail like '%${logDetail}%'
+	    </if>
+	    
+	    	
+	    
+	    <if test="logModuleType != null and logModuleType != ''">
+	    	<if test="logModuleType != 0">
+	    		and logModuleType = #{logModuleType}
+	   		</if>
+	    </if>
+	    
+	    <if test="logType != null and logType != ''">
+  	    	<if test="logType != 0">
+	    		and logType = #{logType}
+	   		</if>
+	    </if>	
+	</where>  
+	order by createTm desc
+  </select>
+  
+	<!-- 添加日志 -->
+	<insert id="insertOne" parameterType="com.keymao.domain.OperateLog">
+		<selectKey keyProperty="logId" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+
+		INSERT INTO OPERATELOG
+		(logModuleType,logType,logDetail,createTm,updateTm,account)
+		VALUES(#{logModuleType,jdbcType=VARCHAR},#{logType,jdbcType=VARCHAR},#{logDetail},now(),now(),#{account})
+	</insert>  
+
+  <!-- 查询总条数 -->
+  <select id="countByCondition" resultType="int" parameterType="com.keymao.domain.OperateLog">
+    select count(*) from OPERATELOG 
+	<where>  
+	    <if test="account != null and account != ''">
+	    	and account = #{account}
+	    </if>
+	    
+	  	    <if test="logDetail != null and logDetail != ''">
+	    	and logDetail like '%${logDetail}%'
+	    </if>
+	    
+	    	
+	    
+	    <if test="logModuleType != null and logModuleType != ''">
+	    	<if test="logModuleType != 0">
+	    		and logModuleType = #{logModuleType}
+	   		</if>
+	    </if>
+	    
+	    <if test="logType != null and logType != ''">
+	  	    	<if test="logType != 0">
+	    		and logType = #{logType}
+	   		</if>
+	    </if>
+		 <if test="beginTm != null and beginTm != ''">
+	    	and UNIX_TIMESTAMP(createTm) <![CDATA[ >= ]]> UNIX_TIMESTAMP(#{beginTm})
+	    </if>
+	    
+	    <if test="endTm != null and endTm != ''">
+	    	and UNIX_TIMESTAMP(createTm) <![CDATA[ <= ]]> UNIX_TIMESTAMP(#{endTm})
+	    </if>  	    	
+	</where>  
+  </select>	
+  
+  <!-- 查询分页数据 -->
+  <select id="selectCaseDetial" resultMap="BaseResultMap" parameterType="com.keymao.domain.OperateLog">
+	select * from OPERATELOG 
+	<where>  
+	    <if test="account != null and account != ''">
+	    	and account = #{account}
+	    </if>
+	    
+	  	    <if test="logDetail != null and logDetail != ''">
+	    	and logDetail like '%${logDetail}%'
+	    </if>
+	    
+	    	
+	    
+	    <if test="logModuleType != null and logModuleType != ''">
+	    	<if test="logModuleType != 0">
+	    		and logModuleType = #{logModuleType}
+	   		</if>
+	    </if>
+	    
+	    <if test="logType != null and logType != ''">
+  	    	<if test="logType != 0">
+	    		and logType = #{logType}
+	   		</if>
+	    </if>	
+	    
+		<if test="beginTm != null and beginTm != ''">
+	    	and UNIX_TIMESTAMP(createTm) <![CDATA[ >= ]]> UNIX_TIMESTAMP(#{beginTm})
+	    </if>
+	    
+	    <if test="endTm != null and endTm != ''">
+	    	and UNIX_TIMESTAMP(createTm) <![CDATA[ <= ]]> UNIX_TIMESTAMP(#{endTm})
+	    </if>   
+	</where> 
+    order by createTm desc
+    limit #{startIndex},#{pageSize}
+  </select>  
+</mapper>

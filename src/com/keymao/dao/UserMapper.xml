@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.keymao.dao.UserMapper" >
+
+	<resultMap id="BaseResultMap" type="com.keymao.domain.User" >  
+	  <id column="USERID" property="userId" jdbcType="INTEGER" />  
+	  <result column="PASSWORD" property="password" jdbcType="VARCHAR" />  
+	  <result column="NAME" property="name" jdbcType="VARCHAR" />  
+	  <result column="SEX" property="sex" jdbcType="INTEGER" /> 
+	  <result column="ISINVALID" property="isInvalid" jdbcType="INTEGER" />  
+	  <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />  
+	  <result column="REMARK" property="remark" jdbcType="VARCHAR" /> 
+	  <result column="CREATETM" property="createTm" jdbcType="TIMESTAMP"  javaType="java.sql.Timestamp"  />  
+	  <result column="UPDATETM" property="updateTm" jdbcType="TIMESTAMP"  javaType="java.sql.Timestamp"  /> 
+	</resultMap> 
+	
+	<select id="getUserByUsernameAndPassword" resultType="com.keymao.domain.User" parameterType="com.keymao.domain.User" >
+		select * from USER where account=#{account} and password=#{password} and isInvalid = 0
+  	</select>
+  
+    <select id="selectByPrimaryKey" resultType="com.keymao.domain.User" parameterType="int" >
+    	select * from USER where userId = #{userId,jdbcType=INTEGER}
+  	</select>
+  	
+	<update id="updateByPrimaryKey" parameterType="com.keymao.domain.User" >
+    	update USER set password = #{password,jdbcType=VARCHAR},remark = #{remark},updateTm = now()
+    	where userId = #{userId,jdbcType=INTEGER}
+  	</update> 
+  	
+	<insert id="insertOne" parameterType="com.keymao.domain.User">
+		<selectKey keyProperty="logId" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO USER
+		(password,name,sex,createTm,updateTm,account,remark,isInvalid)
+		VALUES(#{password,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{sex},now(),now(),#{account},#{remark},#{isInvalid})
+	</insert> 
+	
+  	<!-- 查询分页数据 -->
+  	<select id="pageQueryByCondition" resultMap="BaseResultMap" parameterType="com.keymao.domain.User">
+		select * from USER 
+		<where>  
+	    	<if test="account != null and account != ''">
+	    		and account = #{account}
+	    	</if>
+	    
+	  	    <if test="name != null and name != ''">
+	    		and name like '%${name}%'
+	    	</if>
+	    	
+    		<if test="isInvalid != null">
+	    		and isInvalid = #{isInvalid,jdbcType=INTEGER}
+	    	</if>	    
+	    
+			<if test="beginTm != null and beginTm != ''">
+		    	and UNIX_TIMESTAMP(createTm) <![CDATA[ >= ]]> UNIX_TIMESTAMP(#{beginTm})
+		    </if>
+		    
+		    <if test="endTm != null and endTm != ''">
+		    	and UNIX_TIMESTAMP(createTm) <![CDATA[ <= ]]> UNIX_TIMESTAMP(#{endTm})
+		    </if>   
+		</where> 
+	    order by createTm desc
+	    limit #{startIndex},#{pageSize}
+  	</select>  
+  	
+  	<!-- 查询总条数 -->
+  	<select id="countByCondition" resultType="int" parameterType="com.keymao.domain.User">
+    	select count(*) from USER 
+		<where>  
+	    	<if test="account != null and account != ''">
+	    		and account = #{account}
+	    	</if>
+	    
+	  	    <if test="name != null and name != ''">
+	    		and name like '%${name}%'
+	    	</if>
+	    	
+	    	<if test="isInvalid != null">
+	    		and isInvalid = #{isInvalid,jdbcType=INTEGER}
+	    	</if>
+	    
+			<if test="beginTm != null and beginTm != ''">
+		    	and UNIX_TIMESTAMP(createTm) <![CDATA[ >= ]]> UNIX_TIMESTAMP(#{beginTm})
+		    </if>
+		    
+		    <if test="endTm != null and endTm != ''">
+		    	and UNIX_TIMESTAMP(createTm) <![CDATA[ <= ]]> UNIX_TIMESTAMP(#{endTm})
+		    </if>   
+		</where>  
+  	</select>	  	
+</mapper>
