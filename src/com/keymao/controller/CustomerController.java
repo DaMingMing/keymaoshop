@@ -38,8 +38,8 @@ public class CustomerController {
 		String ordersId = TimeUtils.getTimestamp() + RandomUtils.generate4Random();
 		try {
 			orders.setOrdersId(ordersId);
-			System.out.println("-----------------");
-			System.out.println(orders.getAddress());
+/*			System.out.println("-----------------");
+			System.out.println(orders.getAddress());*/
 			ordersService.insertOne(orders);
 		} catch (Exception e) {
 			e.printStackTrace();
