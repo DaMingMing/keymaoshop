@@ -747,7 +747,7 @@ input[type='file']{border:0px;display:none;}
 	border-radius: 0!important;
 }
 video {
-	background: url(../images/bg-video.jpg) no-repeat;
+	background: url(../../img/product/bg-video.jpg) no-repeat;
 	background-position: center;
 }
 .spec-select .spec-name {
