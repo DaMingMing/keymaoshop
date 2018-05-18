@@ -45,6 +45,24 @@
 	<!-- END YAHOO Pixel Code -->
   </head>  
   <body style="">
+  	<script>
+	  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId            : '205790686890885',
+	      autoLogAppEvents : true,
+	      xfbml            : true,
+	      version          : 'v3.0'
+	    });
+	  };
+	
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "https://connect.facebook.net/en_US/sdk.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+	</script>
 	<div class="mui-content">
 		<!--轮播-->
 		<!--<div class="mui-slider" data-slider="1" data-slidershowtimer="140">
@@ -807,7 +825,8 @@
             </a>
         </span>
   </div> 
-  <script src="js/product/mui.min.js" type="text/javascript"></script><script type="application/javascript" id="ywa-1525603027482-269282" class="ywa-10000" defer="" src="./爆款滾筒多功能切菜器刨絲削皮器手搖切菜器蔬菜器刀廚房工具_files/sp.pl.下载"></script>  
+  <div class="fb-customerchat" page_id="<PAGE_ID>"></div>
+  <script src="js/product/mui.min.js" type="text/javascript"></script> 
   <script src="js/product/jquery.min.js"></script>
   <script src="js/product/jquery.inbox.js"></script>
   <script src="js/product/base.js" id="baseScript" path="http://chopping-artifact.3w-mall.com/"></script>
