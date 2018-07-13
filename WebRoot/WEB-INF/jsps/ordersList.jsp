@@ -354,7 +354,7 @@
                          "<td>" + this.productName + "</td>" +
                          "<td>" + this.phone + "</td>" +
                          "<td>" + timeStamp2String(this.createTm) + "</td>" +
-                         "<td>" + "<a href='javascript:void(0);'  onclick='toEdit("+this.ordersId+")'>修改</a>" + "</td>" +
+                         "<td>" + "<a href='javascript:void(0);'  onclick=\"toEdit(\'"+this.ordersId+"\')\">修改</a>" + "</td>" +
                          "</tr>";	                     			  
        		       	});	  
              		//局部替换表格数据
@@ -538,7 +538,8 @@
 	                                 "<td>" + this.productName + "</td>" +
 	                                 "<td>" + this.phone + "</td>" +
 	                                 "<td>" + timeStamp2String(this.createTm) + "</td>" +
-	                                 "<td>" + "<a href='javascript:void(0);'  onclick='toEdit("+this.ordersId+")'>修改</a>" + "</td>" +
+	                                 //"<td>" + "<a href='javascript:void(0);'  onclick='toEdit("+this.ordersId+")'>修改</a>" + "</td>" +
+	                                 "<td>" + "<a href='javascript:void(0);'  onclick=\"toEdit(\'"+this.ordersId+"\')\">修改</a>" + "</td>" +	
 	                                 "</tr>";	                     			  
                    		       	});	  
 	                     		$('tbody').html(result);
